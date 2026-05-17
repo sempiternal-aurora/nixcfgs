@@ -6,6 +6,7 @@
 }:
 let
   cfg = config.mine.firefox;
+  name = config.home.username;
 in
 {
   imports = [
@@ -20,6 +21,10 @@ in
     programs.firefox = {
       enable = true;
       configPath = "${config.xdg.configHome}/mozilla/firefox";
+      profiles."${name}" = {
+        inherit name;
+        id = 0;
+      };
       policies = {
         DisableTelemetry = true;
         DisableFirefoxStudies = true;
@@ -98,7 +103,7 @@ in
 
     textfox = {
       enable = true;
-      profiles = [ "default" ];
+      profiles = [ name ];
       config = {
         font = {
           family = "\"Hasklug Nerd Font Mono\", monospace";
@@ -106,7 +111,7 @@ in
         };
         tabs.horizontal.enable = true;
         displayNavButtons = true;
-        displayUrlbarIcons = true;
+        # displayUrlbarIcons = true;
       };
     };
   };

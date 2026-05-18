@@ -51,7 +51,8 @@ in
     ++ lib.lists.optional cfg.weechat pkgs.weechat
     ++ lib.lists.optional cfg.trash pkgs.trash-cli
     ++ lib.lists.optional cfg.mercurial pkgs.mercurial
-    ++ lib.lists.optional cfg.yt-dlp pkgs.yt-dlp;
+    ++ lib.lists.optional cfg.yt-dlp pkgs.yt-dlp
+    ++ lib.lists.optional config.mine.direnv.enable pkgs.devenv;
 
     programs.nix-index.enable = cfg.comma;
     programs.nix-index-database.comma.enable = cfg.comma;

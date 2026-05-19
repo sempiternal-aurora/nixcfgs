@@ -9,7 +9,7 @@
     includes = [
       {
         path = "${config.xdg.configHome}/git/gitlab.conf";
-        condition = "hasconfig:remote.*.url:git@gitlab.cecs.anu.edu.au:*/**";
+        condition = "hasconfig:remote.*.url:git@gitlab.comp.anu.edu.au:*/**";
       }
       {
         path = "${config.xdg.configHome}/git/github.conf";
@@ -17,7 +17,7 @@
       }
       {
         path = "${config.xdg.configHome}/git/gitlab.conf";
-        condition = "hasconfig:remote.*.url:https://*:*@gitlab.cecs.anu.edu.au/**";
+        condition = "hasconfig:remote.*.url:https://*:*@gitlab.comp.anu.edu.au/**";
       }
       {
         path = "${config.xdg.configHome}/git/github.conf";

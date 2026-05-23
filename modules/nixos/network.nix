@@ -80,7 +80,6 @@ in
     hardware.bluetooth.enable = cfg.bluetooth.enable;
     services.blueman = {
       enable = cfg.bluetooth.enable;
-      withApplet = false;
     };
   };
 }

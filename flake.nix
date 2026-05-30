@@ -154,7 +154,7 @@
 
       overlays.default = import ./pkgs/overlay.nix;
 
-      packages = nixpkgs.lib.genAttrs [ "aarch64-linux" "x86_64-linux" ] (
+      packages = nixpkgs.lib.genAttrs [ "aarch64-linux" "x86_64-linux" "aarch64-darwin" ] (
         system:
         let
           pkgs = import nixpkgs {
@@ -163,7 +163,7 @@
           };
         in
         {
-          inherit (pkgs) petro_bot afp stm32cubeide;
+          inherit (pkgs) petro_bot afp;
         }
       );
 

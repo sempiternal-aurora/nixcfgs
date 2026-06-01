@@ -4,7 +4,11 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     aurora-nixpkgs.url = "github:sempiternal-aurora/nixpkgs/stm32cubeide";
-    nixos-hardware.url = "github:NixOS/nixos-hardware";
+
+    nixos-hardware = {
+      url = "github:NixOS/nixos-hardware";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     home-manager = {
       url = "github:nix-community/home-manager";

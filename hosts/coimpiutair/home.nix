@@ -109,6 +109,7 @@ in
       "idea"
       "idea-ultimate"
       "mathematica"
+      "Wolfram_14.3.0_LIN_Bndl.sh"
       "zoom"
       "stm32cubeide"
     ];

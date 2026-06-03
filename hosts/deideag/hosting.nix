@@ -82,6 +82,7 @@
             Get the hash:
             $ nix hash file --type sha256 petro-bot-env.nix
           '';
+          meta.license = lib.licenses.free;
         }
       );
     };

@@ -48,6 +48,7 @@ args@{
           Get the hash:
           $ nix hash file --type sha256 nyla-ssh-keys.nix
         '';
+        meta.license = lib.licenses.free;
       }
     );
   };

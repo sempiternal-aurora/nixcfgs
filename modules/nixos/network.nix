@@ -45,6 +45,7 @@ in
             Get the hash:
             $ nix hash file --type sha256 ANU-Secure.8021x
           '';
+          meta.license = lib.licenses.free;
         };
       in
       lib.mkIf cfg.iwdBackend {

@@ -53,8 +53,8 @@ args@{
         inherit pkgs;
         buildLinux = pkgs.buildLinux;
       };
-      version = pkgs.cachyosKernels.linux-cachyos-rc.version;
-      src = pkgs.cachyosKernels.linux-cachyos-rc.src.src;
+      version = pkgs.cachyosKernels.linux-cachyos-latest.version;
+      src = pkgs.cachyosKernels.linux-cachyos-latest.src.src;
       kernel =
         (mkCachyKernel {
           pname = "linux-cachyos-latest-lto-zen4";

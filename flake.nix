@@ -56,7 +56,7 @@
 
     nixos-apple-silicon = {
       url = "github:Solidsilver/nixos-apple-silicon/feat/vendorfw-support";
-      # inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     nix-index-database = {

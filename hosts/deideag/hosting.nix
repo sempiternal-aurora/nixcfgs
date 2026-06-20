@@ -13,20 +13,70 @@
     services.caddy = {
       enable = true;
       group = "www-data";
-      virtualHosts =
-        let
-          caddyConfig = url: {
-            extraConfig = ''
-              root * /var/www/${url}/public_html
-              file_server
-              php_fastcgi unix/${config.services.phpfpm.pools.holonet.socket}
-            '';
-          };
-        in
-        lib.attrsets.genAttrs [
-          "holonet.myria.dev"
-          "holonet.auroracod.ing"
-        ] caddyConfig;
+      virtualHosts = {
+        # Holonet archives
+        "holonet.myria.dev" = {
+          extraConfig = ''
+            root * /var/www/holonet.myria.dev/public_html
+            file_server
+            php_fastcgi unix/${config.services.phpfpm.pools.holonet.socket}
+          '';
+        };
+        "holonet.auroracod.ing" = {
+          extraConfig = ''
+            root * /var/www/holonet.auroracod.ing/public_html
+            file_server
+            php_fastcgi unix/${config.services.phpfpm.pools.holonet.socket}
+          '';
+        };
+
+        "irc.myria.dev" = {
+          extraConfig = ''
+            reverse_proxy 127.0.0.1:7797
+          '';
+        };
+      };
+    };
+
+    services.soju = {
+      enable = true;
+      hostName = "irc.myria.dev";
+      tlsCertificate = "/var/lib/soju/fullchain.pem";
+      tlsCertificateKey = "/var/lib/soju/privkey.pem";
+      acceptProxyIP = [ "localhost" ];
+      listen = [
+        "irc://localhost:6667"
+        "ircs://0.0.0.0:6697"
+        "http://localhost:7797"
+      ];
+      extraConfig = ''
+        file-upload fs ./uploads
+      '';
+    };
+
+    # Copy certs into the soju directory
+    systemd.timers.soju-certs = {
+      wantedBy = [ "timers.target" ];
+      timerConfig = {
+        OnCalendar = "daily";
+        Unit = "soju-certs.service";
+      };
+    };
+
+    systemd.services.soju-certs = {
+      path = [ pkgs.coreutils ];
+      script = ''
+        mkdir -p /var/lib/soju/
+        cp /var/lib/caddy/.local/share/caddy/certificates/acme-v02.api.letsencrypt.org-directory/irc.myria.dev/irc.myria.dev.{crt,key} /var/lib/soju/
+        rm -f /var/lib/soju/{fullchain,privkey}.pem
+        mv /var/lib/soju/irc.myria.dev.crt /var/lib/soju/fullchain.pem
+        mv /var/lib/soju/irc.myria.dev.key /var/lib/soju/privkey.pem
+        chmod 644 /var/lib/soju/{fullchain,privkey}.pem
+        chown nobody:nogroup /var/lib/soju/{fullchain,privkey}.pem
+      '';
+      serviceConfig = {
+        Type = "oneshot";
+      };
     };
 
     services.mysql = {
@@ -134,6 +184,7 @@
     networking.firewall.allowedTCPPorts = [
       80
       443
+      6697
     ];
   };
 }

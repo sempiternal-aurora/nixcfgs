@@ -265,41 +265,40 @@ in
     };
 
     home.pointerCursor = {
-      gtk.enable = true;
+      enable = true;
+      gtk = {
+        size = 24;
+        enable = true;
+      };
+      sway = {
+        size = 24;
+        enable = true;
+      };
       x11.enable = true;
       package = pkgs.dracula-theme;
       name = "Dracula-cursors";
       size = 48;
     };
 
-    gtk =
-      let
-        cursorTheme = {
-          package = pkgs.dracula-theme;
-          name = "Dracula-cursors";
-          size = 24;
-        };
-        theme = {
-          name = "Dracula";
-          package = pkgs.dracula-theme;
-        };
-        iconTheme = {
-          name = "Dracula";
-          package = pkgs.dracula-icon-theme;
-        };
-      in
-      {
-        enable = true;
-        font = {
-          package = font;
-          size = 12;
-          name = "Hasklug Nerd Font Regular";
-        };
-        inherit theme cursorTheme iconTheme;
-        gtk4 = {
-          inherit theme cursorTheme iconTheme;
-        };
+    gtk = {
+      enable = true;
+      font = {
+        package = font;
+        size = 12;
+        name = "Hasklug Nerd Font Regular";
       };
+      theme = {
+        name = "Dracula";
+        package = pkgs.dracula-theme;
+      };
+      iconTheme = {
+        name = "Dracula";
+        package = pkgs.dracula-icon-theme;
+      };
+      gtk4 = {
+        inherit (config.gtk) theme;
+      };
+    };
 
     wayland.windowManager.sway = {
       enable = true;

@@ -11,7 +11,13 @@ args@{
   ];
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
-  environment.systemPackages = [ ];
+  environment.systemPackages = [
+    pkgs.firefox
+    (pkgs.isabelle.withComponents (ps: [ ps.isabelle-linter ]))
+    pkgs.discord
+    pkgs.zoom-us
+    pkgs.element-desktop
+  ];
 
   # Necessary for using flakes on this system.
   nix = {
@@ -47,6 +53,8 @@ args@{
     builtins.elem (lib.getName pkg) [
       "1password"
       "1password-gui"
+      "discord"
+      "zoom"
     ];
 
   users.users.myria = {

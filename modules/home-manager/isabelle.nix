@@ -41,7 +41,7 @@ in
     home.packages = [
       (pkgs.isabelle.withComponents (p: [
         p.isabelle-linter
-        pkgs.afp
+        pkgs.autocorres
       ]))
     ];
 

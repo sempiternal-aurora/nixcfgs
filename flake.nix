@@ -35,8 +35,6 @@
     nix-cachyos-kernel = {
       url = "github:xddxdd/nix-cachyos-kernel";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.cachyos-kernel.follows = "cachyos-kernel";
-      inputs.cachyos-kernel-patches.follows = "cachyos-kernel-patches";
     };
 
     cachyos-kernel-patches = {

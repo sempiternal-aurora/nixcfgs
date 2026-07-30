@@ -165,7 +165,7 @@
           };
         in
         {
-          inherit (pkgs) petro_bot afp autocorres;
+          inherit (pkgs) petro_bot afp;
         }
       );
 

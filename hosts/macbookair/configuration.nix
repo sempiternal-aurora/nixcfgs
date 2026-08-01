@@ -28,6 +28,31 @@ args@{
       efi.canTouchEfiVariables = false;
     };
     initrd.systemd.enable = true;
+    kernelPackages = lib.mkForce (
+      lib.recurseIntoAttrs (
+        (pkgs.linuxPackagesFor (
+          pkgs.linuxManualConfig {
+            version = "7.1.5-2";
+            modDirVersion = "7.1.5";
+
+            src = pkgs.fetchFromGitHub {
+              owner = "AsahiLinux";
+              repo = "linux";
+              tag = "asahi-7.1.5-2";
+              hash = "sha256-z7S0YTmDshMK2frFhMm4M4wUOV3rPOwxPkR2IXk4R+Y=";
+            };
+
+            configfile = ./asahi.config;
+            allowImportFromDerivation = false;
+
+            features = {
+              efiBootStub = true;
+              rust = true;
+            };
+          }
+        ))
+      )
+    );
   };
 
   hardware.asahi = {
@@ -45,6 +70,10 @@ args@{
       '';
     };
   };
+
+  hardware.firmware = [
+    pkgs.pkgsCross.arm-embedded.avd-fw
+  ];
 
   admin-user = {
     enable = true;

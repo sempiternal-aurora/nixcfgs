@@ -42,6 +42,7 @@ in
       fish = isLinux;
       zoxide = true;
       btop = true;
+      ao3downloader = true;
       comma = true;
       hyfetch = true;
       eza = true;

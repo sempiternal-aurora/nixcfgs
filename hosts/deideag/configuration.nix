@@ -41,7 +41,7 @@ args@{
       pkgs.requireFile {
         name = "nyla-ssh-keys.nix";
         hashMode = "flat";
-        hash = "sha256-bvcznDkKoaOTwmk39tpex8FfKH5mxfN0ArrkzXotwXI=";
+        hash = "sha256-JC9m9gZ/ZMlqw/aeVlNk6LmFkXPvKfRnIzTf2Ul2KUM=";
         message = ''
           Add the file to the store:
           $ nix store add --mode flat nyla-ssh-keys.nix

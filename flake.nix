@@ -189,6 +189,20 @@
             };
           };
         };
+	macbookpro = nix-darwin.lib.darwinSystem {
+          system = "aarch64-darwin";
+          modules = [
+            ./hosts/macbookpro/darwin-configuration.nix
+            { nixpkgs.overlays = [ self.outputs.overlays.default ]; }
+          ];
+          specialArgs = {
+            inherit inputs;
+            vars = {
+              adminUser = "myriasarvay";
+              configuration = "macbookpro";
+            };
+          };
+        };
       };
     };
 }

@@ -13,6 +13,7 @@ args@{
   # $ nix-env -qaP | grep wget
   environment.systemPackages = [
     pkgs.firefox
+    pkgs.ghostty-bin
     (pkgs.isabelle.withComponents (ps: [ ps.isabelle-linter ]))
     pkgs.discord
     pkgs.zoom-us

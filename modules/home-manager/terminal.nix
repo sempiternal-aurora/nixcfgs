@@ -8,7 +8,7 @@
 let
   cfg = config.mine.terminal;
   nix-rebuild =
-    if pkgs.stdenv.isDarwin then
+    if pkgs.stdenv.hostPlatform.isDarwin then
       "sudo -i darwin-rebuild switch --flake ~/nix#${vars.configuration} --keep-going"
     else
       "nixos-rebuild switch --flake ~/nix#${vars.configuration} --sudo --keep-going";

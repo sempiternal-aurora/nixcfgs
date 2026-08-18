@@ -5,14 +5,14 @@
   ninja,
 }:
 
-stdenv.mkDerivation {
+stdenv.mkDerivation (finalAttrs: {
   pname = "avd-fw";
-  version = "0-unstable-2026-07-26";
+  version = "0.1";
 
   src = fetchFromGitHub {
     owner = "AsahiLinux";
     repo = "avd-fw";
-    rev = "5e34aca83906f12ef3c2bfacb6712797de4bb7d5";
+    tag = "v${finalAttrs.version}";
     hash = "sha256-cq/gOgmbCg5IX0GSiS7Z5lBhpursB1Num8LSANw5fpI=";
   };
 
@@ -26,4 +26,4 @@ stdenv.mkDerivation {
     "--buildtype"
     "release"
   ];
-}
+})

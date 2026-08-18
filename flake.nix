@@ -189,7 +189,7 @@
             };
           };
         };
-	macbookpro = nix-darwin.lib.darwinSystem {
+        macbookpro = nix-darwin.lib.darwinSystem {
           system = "aarch64-darwin";
           modules = [
             ./hosts/macbookpro/darwin-configuration.nix

@@ -1,29 +1,18 @@
 args@{
   inputs,
   lib,
-  pkgs,
   vars,
   ...
 }:
 {
   imports = [
     inputs.home-manager.darwinModules.default
-  ];
-  # List packages installed in system profile. To search by name, run:
-  # $ nix-env -qaP | grep wget
-  environment.systemPackages = [
-    pkgs.firefox
-    pkgs.ghostty-bin
-    (pkgs.isabelle.withComponents (ps: [ ps.isabelle-linter ]))
-    pkgs.discord
-    pkgs.zoom-us
-    pkgs.element-desktop
+    ../../modules/nix-darwin
   ];
 
   # Necessary for using flakes on this system.
   nix = {
     settings = {
-      experimental-features = "flakes nix-command";
       trusted-users = [
         "root"
         vars.adminUser
@@ -35,8 +24,25 @@ args@{
     '';
   };
 
-  # Enable alternative shell support in nix-darwin.
-  # programs.fish.enable = true;
+  mine = {
+    keyboard = {
+      enable = true;
+      caps2esc = true;
+    };
+    firefox.enable = true;
+    yazi.enable = true;
+    discord.enable = true;
+    element.enable = true;
+    _1password.enable = true;
+    zoom.enable = true;
+    ghostty.enable = true;
+  };
+
+  admin-user = {
+    enable = true;
+    userName = vars.adminUser;
+    homeManager = import ./home.nix (args // { userName = vars.adminUser; });
+  };
 
   # Used for backwards compatibility, please read the changelog before changing.
   # $ darwin-rebuild changelog
@@ -44,46 +50,14 @@ args@{
 
   # The platform the configuration will be used on.
   nixpkgs.hostPlatform = "aarch64-darwin";
-  system.keyboard = {
-    enableKeyMapping = true;
-    remapCapsLockToEscape = true;
-  };
 
   nixpkgs.config.allowUnfreePredicate =
     pkg:
     builtins.elem (lib.getName pkg) [
       "1password"
+      "1password-cli"
       "1password-gui"
       "discord"
       "zoom"
     ];
-
-  users.users.myria = {
-    home = "/Users/myria";
-    packages = [
-      pkgs.nil
-      pkgs.nixfmt
-
-      pkgs.git
-
-      pkgs.digital
-    ];
-  };
-
-  programs._1password-gui.enable = true;
-
-  home-manager = {
-    extraSpecialArgs = {
-      inherit inputs;
-      vars = vars;
-    };
-    backupFileExtension = "hm-bak";
-    users.myria = import ./home.nix (args // { userName = "myria"; });
-  };
-
-  security.pam.services.sudo_local.touchIdAuth = true;
-
-  # Prevents slow shell startup, we already compinit per-user,
-  # don't need to do it at the system level too.
-  programs.zsh.enableGlobalCompInit = false;
 }

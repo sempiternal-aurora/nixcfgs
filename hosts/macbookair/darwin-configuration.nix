@@ -1,7 +1,9 @@
 args@{
   inputs,
   lib,
+  pkgs,
   vars,
+  config,
   ...
 }:
 {

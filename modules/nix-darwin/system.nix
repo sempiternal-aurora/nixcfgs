@@ -22,7 +22,7 @@
     ];
 
     # Set your time zone.
-    time.timeZone = "Australia/Canberra";
+    time.timeZone = "Australia/Sydney";
 
     # List packages installed in system profile. To search, run:
     # $ nix search wget

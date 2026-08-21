@@ -37,16 +37,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    cachyos-kernel-patches = {
-      url = "github:CachyOS/kernel-patches";
-      flake = false;
-    };
-
-    cachyos-kernel = {
-      url = "github:CachyOS/linux-cachyos";
-      flake = false;
-    };
-
     nix-doom-emacs = {
       url = "github:marienz/nix-doom-emacs-unstraightened";
       inputs.nixpkgs.follows = "nixpkgs";

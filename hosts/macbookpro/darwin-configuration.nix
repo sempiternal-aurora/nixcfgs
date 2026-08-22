@@ -28,7 +28,11 @@ args@{
   };
 
   mine = {
-    linux-builder.enable = true;
+    linux-builder = {
+      enable = true;
+      maxJobs = 6;
+      cores = 16;
+    };
     keyboard = {
       enable = true;
       caps2esc = true;
@@ -40,6 +44,7 @@ args@{
     element.enable = true;
     zoom.enable = true;
     ghostty.enable = true;
+    teams.enable = true;
   };
 
   admin-user = {
@@ -62,6 +67,7 @@ args@{
       "1password-cli"
       "1password-gui"
       "discord"
+      "teams"
       "zoom"
     ];
 }

@@ -14,6 +14,7 @@
     mine.zoom.enable = lib.mkEnableOption "online meetings app";
     mine.ghostty.enable = lib.mkEnableOption "terminal emulator";
     mine.isabelle.enable = lib.mkEnableOption "proof system";
+    mine.teams.enable = lib.mkEnableOption "enable teams module";
   };
   config = {
     nix.settings.experimental-features = [
@@ -37,6 +38,7 @@
       ]
       ++ lib.lists.optional config.mine.firefox.enable pkgs.firefox
       ++ lib.lists.optional config.mine.discord.enable pkgs.discord
+      ++ lib.lists.optional config.mine.teams.enable pkgs.teams
       ++ lib.lists.optional config.mine.isabelle.enable (
         pkgs.isabelle.withComponents (ps: [
           ps.isabelle-linter

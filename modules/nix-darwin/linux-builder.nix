@@ -42,10 +42,28 @@ in
       ];
       ephemeral = false;
       inherit (cfg) maxJobs;
+      supportedFeatures = [
+        "benchmark"
+        "big-parallel"
+        "kvm"
+        "nixos-test"
+        "uid-range"
+      ];
       config = {
         nix.settings = {
-          experimental-features = "flakes nix-command";
           build-dir = "/nix/.rw-store/build";
+          # needed for nixos tests with containers
+          system-features = [
+            "uid-range"
+          ];
+          experimental-features = [
+            "auto-allocate-uids"
+            "cgroups"
+            "flakes"
+            "nix-command"
+          ];
+          auto-allocate-uids = true;
+          use-cgroups = true;
         };
 
         systemd.tmpfiles.settings."10-nix-build-dir"."/nix/.rw-store/build".d = {

@@ -40,7 +40,7 @@ in
         "aarch64-linux"
         "x86_64-linux"
       ];
-      ephemeral = false;
+      ephemeral = true;
       inherit (cfg) maxJobs;
       supportedFeatures = [
         "benchmark"

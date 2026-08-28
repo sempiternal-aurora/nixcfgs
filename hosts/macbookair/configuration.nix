@@ -32,14 +32,14 @@ args@{
       lib.recurseIntoAttrs (
         (pkgs.linuxPackagesFor (
           pkgs.linuxManualConfig {
-            version = "7.1.6-1";
-            modDirVersion = "7.1.6";
+            version = "7.1.10-1";
+            modDirVersion = "7.1.10";
 
             src = pkgs.fetchFromGitHub {
               owner = "AsahiLinux";
               repo = "linux";
-              tag = "asahi-7.1.6-1";
-              hash = "sha256-n93ndyqazIKpcAMtsbdjmMOvgI+65IdiEzGp88jLQRM=";
+              tag = "asahi-7.1.10-1";
+              hash = "sha256-6NDRWwkPVabj+IwK4Sgg2Ot6hXANTccWLa2SLVTa+eA=";
             };
 
             configfile = ./asahi.config;

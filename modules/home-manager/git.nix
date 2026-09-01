@@ -12,6 +12,10 @@
         condition = "hasconfig:remote.*.url:git@gitlab.comp.anu.edu.au:*/**";
       }
       {
+        path = "${config.xdg.configHome}/git/codeberg.conf";
+        condition = "hasconfig:remote.*.url:git@codeberg.org:*/**";
+      }
+      {
         path = "${config.xdg.configHome}/git/github.conf";
         condition = "hasconfig:remote.*.url:git@github.com:*/**";
       }
@@ -31,6 +35,14 @@
   };
 
   xdg.configFile = {
+    "git/codeberg.conf" = {
+      enable = true;
+      text = ''
+        [user]
+            name = "sempiternal-aurora"
+            email = "myrialsarvay@gmail.com"
+      '';
+    };
     "git/gitlab.conf" = {
       enable = true;
       text = ''

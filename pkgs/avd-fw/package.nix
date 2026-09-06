@@ -1,6 +1,8 @@
 {
+  lib,
   stdenv,
   fetchFromGitHub,
+  pkgsCross,
   meson,
   ninja,
 }:
@@ -17,6 +19,7 @@ stdenv.mkDerivation (finalAttrs: {
   };
 
   nativeBuildInputs = [
+    pkgsCross.arm-embedded.stdenv.cc
     ninja
     meson
   ];
@@ -26,4 +29,12 @@ stdenv.mkDerivation (finalAttrs: {
     "--buildtype"
     "release"
   ];
+
+  meta = {
+    description = "Firmware for the Apple Video Decoder, found on M-Series Apple Silicon Devices";
+    homepage = "https://github.com/AsahiLinux/avd-fw";
+    license = lib.licenses.mit;
+    platforms = [ "aarch64-linux" ];
+    maintainers = [ lib.maintainers.sempiternal-aurora ];
+  };
 })

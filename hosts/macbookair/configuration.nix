@@ -72,7 +72,7 @@ args@{
   };
 
   hardware.firmware = [
-    pkgs.pkgsCross.arm-embedded.avd-fw
+    pkgs.avd-fw
   ];
 
   admin-user = {

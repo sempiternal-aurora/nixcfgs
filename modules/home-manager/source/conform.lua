@@ -2,7 +2,7 @@ require("conform").setup({
     formatters_by_ft = {
         nix = { "nixfmt" },
         lua = { "stylua" },
-        python = { "isort", "ruff_format" },
+        python = { "ruff_organize_imports", "ruff_format" },
         rust = { "rustfmt" },
         bib = { "tex-fmt" },
         tex = { "tex-fmt" },

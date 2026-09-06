@@ -43,7 +43,7 @@
     };
 
     nixos-apple-silicon = {
-      url = "github:nix-community/nixos-apple-silicon";
+      url = "github:sempiternal-aurora/nixos-apple-silicon";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

@@ -142,6 +142,23 @@
             { nixpkgs.overlays = [ self.outputs.overlays.default ]; }
           ];
         };
+
+        macbookpro = nixpkgs.lib.nixosSystem {
+          system = "aarch64-linux";
+          specialArgs = {
+            inherit inputs;
+            vars = {
+              adminUser = "myria";
+              configuration = "macbookpro";
+            };
+          };
+          modules = [
+            ./hosts/macbookpro/configuration.nix
+            inputs.home-manager.nixosModules.default
+            inputs.nixos-apple-silicon.nixosModules.default
+            { nixpkgs.overlays = [ self.outputs.overlays.default ]; }
+          ];
+        };
       };
 
       overlays.default = import ./pkgs/overlay.nix;

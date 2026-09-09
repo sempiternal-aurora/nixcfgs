@@ -28,31 +28,6 @@ args@{
       efi.canTouchEfiVariables = false;
     };
     initrd.systemd.enable = true;
-    kernelPackages = lib.mkForce (
-      lib.recurseIntoAttrs (
-        (pkgs.linuxPackagesFor (
-          pkgs.linuxManualConfig {
-            version = "7.1.12-1";
-            modDirVersion = "7.1.12";
-
-            src = pkgs.fetchFromGitHub {
-              owner = "AsahiLinux";
-              repo = "linux";
-              tag = "asahi-7.1.12-1";
-              hash = "sha256-SN0kEWrIDkGY7bPr9qx8oKWwDUptJHdePMSZ7vc72EQ=";
-            };
-
-            configfile = ./asahi.config;
-            allowImportFromDerivation = false;
-
-            features = {
-              efiBootStub = true;
-              rust = true;
-            };
-          }
-        ))
-      )
-    );
   };
 
   hardware.asahi = {

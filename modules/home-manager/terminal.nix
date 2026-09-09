@@ -18,6 +18,7 @@ in
     mine.terminal.newsboat = lib.mkEnableOption "newsboat: rss aggregation engine";
     mine.terminal.spotify-player = lib.mkEnableOption "spotify-player: cmd-line spotify client";
     mine.terminal.weechat = lib.mkEnableOption "weechat: irc terminal client";
+    mine.terminal.senpai = lib.mkEnableOption "senpai: different irc terminal client";
     mine.terminal.trash = lib.mkEnableOption "trash-cli: delete items with ways of recovering them";
     mine.terminal.mercurial = lib.mkEnableOption "mercurial: alternative version control software";
     mine.terminal.zip = lib.mkEnableOption "zip: exactly as it says on the tin";
@@ -50,6 +51,7 @@ in
       pkgs.unzip
     ]
     ++ lib.lists.optional cfg.weechat pkgs.weechat
+    ++ lib.lists.optional cfg.senpai pkgs.senpai
     ++ lib.lists.optional cfg.trash pkgs.trash-cli
     ++ lib.lists.optional cfg.mercurial pkgs.mercurial
     ++ lib.lists.optional cfg.yt-dlp pkgs.yt-dlp

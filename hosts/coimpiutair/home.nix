@@ -37,7 +37,8 @@ in
     terminal = {
       newsboat = true;
       spotify-player = true;
-      weechat = true;
+      weechat = false;
+      senpai = true;
       trash = true;
       mercurial = true;
       zip = true;

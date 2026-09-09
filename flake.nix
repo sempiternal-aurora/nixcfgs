@@ -43,7 +43,7 @@
     };
 
     nixos-apple-silicon = {
-      url = "github:sempiternal-aurora/nixos-apple-silicon";
+      url = "github:sempiternal-aurora/nixos-apple-silicon/all-changes";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -158,7 +158,6 @@
           inherit (pkgs)
             petro_bot
             afp
-            avd-fw
             ;
         }
       );

@@ -175,6 +175,7 @@
           inherit (pkgs)
             petro_bot
             afp
+            apmc
             ;
         }
       );

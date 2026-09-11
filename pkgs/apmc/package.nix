@@ -8,13 +8,11 @@ rustPlatform.buildRustPackage {
   version = "0-unstable-2026-04-13";
 
   src = fetchFromGitHub {
-    owner = "0ax1";
+    owner = "sempiternal-aurora";
     repo = "apmc";
-    rev = "9cff99a9df2ae055f1e3065c64f633e38bb6beec";
-    hash = "sha256-wxaAq+PWpn7HvaW9pgqCV7RMHSSYZ54z9HyNMZ2R3Ls=";
+    rev = "810a731ec01760e478b382ca6a81782a03dbfe0d";
+    hash = "sha256-SIXQB83Jk8g8kJt87LVH3FMIbgIjIXMvcpiFo7fpuks=";
   };
-
-  patches = [ ./print_in_number_order.patch ];
 
   cargoHash = "sha256-idYuXmyS4Qyrlfb0KMwbfMxO0BOKqcDWLSWTq2ChAh4=";
 }

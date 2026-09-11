@@ -1,0 +1,26 @@
+diff --git a/src/kpep.rs b/src/kpep.rs
+index c21f6d2..2cdcbcd 100644
+--- a/src/kpep.rs
++++ b/src/kpep.rs
+@@ -246,7 +246,7 @@ impl KpepDatabase {
+             });
+         }
+ 
+-        events.sort_by(|a, b| a.name.cmp(&b.name));
++        events.sort_by_key(|a| a.number);
+ 
+         Ok(KpepDatabase { name, cpu, events })
+     }
+diff --git a/src/main.rs b/src/main.rs
+index 7e04113..fd4e308 100644
+--- a/src/main.rs
++++ b/src/main.rs
+@@ -224,7 +224,7 @@ fn cmd_list(filter: Option<&str>) -> Result<(), Box<dyn std::error::Error>> {
+         };
+ 
+         println!(
+-            "  [{:>3}] {:<35} ({}) {}",
++            "  [{:#04x}] {:<35} ({}) {}",
+             event.number.unwrap_or(0),
+             event.name,
+             mask_str,

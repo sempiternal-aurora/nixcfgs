@@ -14,5 +14,7 @@ rustPlatform.buildRustPackage {
     hash = "sha256-wxaAq+PWpn7HvaW9pgqCV7RMHSSYZ54z9HyNMZ2R3Ls=";
   };
 
+  patches = [ ./print_in_number_order.patch ];
+
   cargoHash = "sha256-idYuXmyS4Qyrlfb0KMwbfMxO0BOKqcDWLSWTq2ChAh4=";
 }

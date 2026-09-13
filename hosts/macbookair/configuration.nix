@@ -91,7 +91,7 @@ args@{
     media.enable = false;
     networking = {
       enable = true;
-      iwdBackend = true;
+      iwdBackend = false;
       tailscale.enable = true;
       globalprotect.enable = true;
       bluetooth.enable = true;

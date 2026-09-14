@@ -32,6 +32,10 @@ args@{
 
   hardware.asahi = {
     enable = true;
+    avd = {
+      enable = true;
+      vaapi-support = true;
+    };
     setupAsahiSound = true;
     peripheralFirmwareDirectory = pkgs.requireFile {
       name = "vendorfw";
@@ -45,10 +49,6 @@ args@{
       '';
     };
   };
-
-  hardware.firmware = [
-    pkgs.avd-fw
-  ];
 
   admin-user = {
     enable = true;

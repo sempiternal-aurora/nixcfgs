@@ -33,6 +33,9 @@ in
       };
     };
 
+    # Module I'm a maintainer of
+    services.kapla.enable = true;
+
     systemd.tmpfiles.settings."10-iwd" =
       let
         ANU-Secure = pkgs.requireFile {

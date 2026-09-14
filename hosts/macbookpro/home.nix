@@ -85,11 +85,6 @@ in
     firefox.enable = true;
   };
 
-  # Packages I'm maintaining to keep an eye out for breaks
-  home.packages = [
-    pkgs.vampire
-  ];
-
   programs.ghostty = lib.mkIf isLinux {
     package = null;
     systemd.enable = false;

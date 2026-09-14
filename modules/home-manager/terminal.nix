@@ -46,6 +46,14 @@ in
     home.packages = [
       pkgs.lolcat
     ]
+    ++ [
+      # Packages I'm maintaining to keep an eye out for breaks
+      pkgs.vampire
+      pkgs.ghdl
+      pkgs.ocamlPackages.superbol-studio-oss
+      pkgs.ocamlPackages.drom
+      pkgs.gnucobol
+    ]
     ++ lib.lists.optionals cfg.zip [
       pkgs.zip
       pkgs.unzip

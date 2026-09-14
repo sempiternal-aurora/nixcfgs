@@ -95,7 +95,6 @@ in
 
   # Packages I'm maintaining to keep an eye out for breaks
   home.packages = [
-    pkgs.vampire
     pkgs.stm32cubemx
     auroraPkgs.stm32cubeide
   ];

@@ -11,7 +11,7 @@ let
     if pkgs.stdenv.hostPlatform.isDarwin then
       "sudo -i darwin-rebuild switch --flake ~/nix#${vars.configuration} --keep-going"
     else
-      "nixos-rebuild switch --flake ~/nix#${vars.configuration} --sudo --keep-going";
+      "nixos-rebuild switch --flake ~/nix#${vars.configuration} --elevate=sudo --keep-going";
 in
 {
   options = {

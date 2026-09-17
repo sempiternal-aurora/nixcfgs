@@ -50,6 +50,7 @@ in
       yazi = true;
       starship = true;
       yt-dlp = true;
+      maintained = true;
     };
     direnv.enable = true;
     sway = {

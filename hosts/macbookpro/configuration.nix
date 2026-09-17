@@ -95,6 +95,7 @@ args@{
       tailscale.enable = true;
       globalprotect.enable = true;
       bluetooth.enable = true;
+      kapla.enable = true;
     };
     printing.enable = true;
     brillo.enable = true;

@@ -34,6 +34,7 @@ in
     mine.terminal.yt-dlp = lib.mkEnableOption "yt-dlp: cmd-line youtube video downloader";
     mine.terminal.comma = lib.mkEnableOption "comma: program that pulls in other programs not installed via nix";
     mine.terminal.ao3downloader = lib.mkEnableOption "ao3downloader: mass download fanfiction from ao3";
+    mine.terminal.maintained = lib.mkEnableOption "Add all packages I maintain, to ensure they don't break";
     mine.direnv.enable = lib.mkEnableOption "install direnv for reproducible development environments";
   };
   config = {
@@ -46,7 +47,7 @@ in
     home.packages = [
       pkgs.lolcat
     ]
-    ++ [
+    ++ lib.lists.optionals cfg.maintained [
       # Packages I'm maintaining to keep an eye out for breaks
       pkgs.vampire
       pkgs.ghdl

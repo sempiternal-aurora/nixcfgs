@@ -14,6 +14,7 @@ in
     bluetooth.enable = lib.mkEnableOption "bluetooth support";
     enable = lib.mkEnableOption "networking";
     iwdBackend = lib.mkEnableOption "use iwd backend for network manager";
+    kapla.enable = lib.mkEnableOption "Network module I maintain";
   };
 
   config = lib.mkIf cfg.enable {
@@ -34,7 +35,7 @@ in
     };
 
     # Module I'm a maintainer of
-    services.kapla.enable = true;
+    services.kapla.enable = cfg.kapla.enable;
 
     systemd.tmpfiles.settings."10-iwd" =
       let

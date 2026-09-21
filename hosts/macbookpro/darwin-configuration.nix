@@ -53,6 +53,8 @@ args@{
     homeManager = import ./home.nix (args // { userName = vars.adminUser; });
   };
 
+  environment.systemPackages = [ pkgs.nixos-rebuild ];
+
   # Used for backwards compatibility, please read the changelog before changing.
   # $ darwin-rebuild changelog
   system.stateVersion = 6;

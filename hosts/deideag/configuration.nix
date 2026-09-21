@@ -88,10 +88,7 @@ args@{
     ];
 
   mine = {
-    keyboard = {
-      enable = true;
-      caps2esc = true;
-    };
+    keyboard.enable = false;
     media.enable = false;
     networking = {
       enable = true;

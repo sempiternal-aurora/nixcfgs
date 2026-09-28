@@ -14,6 +14,6 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    home.packages = lib.lists.optional cfg.intellij pkgs.jetbrains.idea;
+    home.packages = lib.lists.optional cfg.intellij pkgs.intellij-idea;
   };
 }

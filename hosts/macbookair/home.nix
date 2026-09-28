@@ -99,8 +99,7 @@ in
       "discord"
       "1password"
       "1password-gui"
-      "idea"
-      "idea-ultimate"
+      "intellij-idea"
       "mathematica"
       "zoom"
     ];

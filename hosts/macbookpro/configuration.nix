@@ -67,7 +67,7 @@ args@{
       "1password-gui"
       "1password-cli"
       "1password"
-      "idea"
+      "intellij-idea"
       "steam"
       "steam-original"
       "steam-unwrapped"

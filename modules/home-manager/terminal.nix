@@ -557,16 +557,19 @@ in
       enableZshIntegration = true;
     };
 
-    xdg.configFile."eza/theme.yml" = {
-      enable = cfg.eza;
-      source =
-        builtins.fetchGit {
-          url = "https://github.com/eza-community/eza-themes.git";
-          ref = "main";
-          rev = "74be26bbd2ce76b29c37250a2fb7cb5d6644c964";
-        }
-        + "/themes/dracula.yml";
-    };
+    xdg.configFile."eza/theme.yml" =
+      let
+        themes = pkgs.fetchFromGitHub {
+          owner = "eza-community";
+          repo = "eza-themes";
+          rev = "21184b55bfe34e8473c8160f9de0c03e4f76857f";
+          hash = "sha256-53J0plgB+d6b4LzSwrCezmIhfVm7WZrKMA1ORGdUtQU=";
+        };
+      in
+      {
+        enable = cfg.eza;
+        source = "${themes}/themes/dracula.yml";
+      };
 
     programs.hyfetch = {
       enable = cfg.hyfetch;

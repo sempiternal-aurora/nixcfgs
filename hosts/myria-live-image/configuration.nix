@@ -26,7 +26,6 @@ args@{
   # boot.kernelPackages = pkgs.linuxPackages_cachyos-lto;
 
   isoImage.edition = "myria";
-  # networking.hostName = "myria-live-image"; # Define your hostname.
 
   # Allow unfree licences for some packages
   nixpkgs.config.allowUnfreePredicate =

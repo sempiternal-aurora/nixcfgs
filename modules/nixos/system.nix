@@ -3,6 +3,7 @@
   lib,
   config,
   inputs,
+  vars,
   ...
 }:
 {
@@ -20,6 +21,9 @@
     ];
 
     boot.tmp.cleanOnBoot = true;
+
+    # Define your hostname.
+    networking.hostName = vars.configuration;
 
     # Set your time zone.
     time.timeZone = "Australia/Canberra";

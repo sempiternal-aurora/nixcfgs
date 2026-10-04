@@ -94,8 +94,6 @@ args@{
     homeManager = import ./home.nix (args // { userName = vars.localUser; });
   };
 
-  networking.hostName = "coimpiutair"; # Define your hostname.
-
   hardware.framework = {
     enableKmod = true;
     laptop13.audioEnhancement.enable = true;

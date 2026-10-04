@@ -56,8 +56,6 @@ args@{
     homeManager = import ./home.nix (args // { userName = vars.adminUser; });
   };
 
-  networking.hostName = vars.configuration; # Define your hostname.
-
   # Allow unfree licences for some packages
   nixpkgs.config.allowUnfreePredicate =
     pkg:

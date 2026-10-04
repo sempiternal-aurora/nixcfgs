@@ -159,6 +159,23 @@
             { nixpkgs.overlays = [ self.outputs.overlays.default ]; }
           ];
         };
+
+        m1mbp13 = nixpkgs.lib.nixosSystem {
+          system = "aarch64-linux";
+          specialArgs = {
+            inherit inputs;
+            vars = {
+              adminUser = "myria";
+              configuration = "m1mbp13";
+            };
+          };
+          modules = [
+            ./hosts/m1mbp13/configuration.nix
+            inputs.home-manager.nixosModules.default
+            inputs.nixos-apple-silicon.nixosModules.default
+            { nixpkgs.overlays = [ self.outputs.overlays.default ]; }
+          ];
+        };
       };
 
       overlays.default = import ./pkgs/overlay.nix;

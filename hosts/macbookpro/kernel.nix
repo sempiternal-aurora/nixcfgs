@@ -31,16 +31,16 @@ let
         extraMeta.branch = "7.1";
 
         src = fetchFromGitHub {
-          owner = "sempiternal-aurora";
+          owner = "AsahiLinux";
           repo = "linux";
-          rev = "9c68ad57565de5cd12dc83e1d0ec9459fd85c0c0";
-          hash = "sha256-D3hwZRa/oVLQJkaMLyFDqBjddDAv7stJRDrlZTfjWLE=";
+          tag = "asahi-7.1.13-3";
+          hash = "sha256-quvdcQ2LbYQyCDQFKc6KPjWv+f5fpWfUrXo5Id0kpwE=";
         };
 
         kernelPatches = [
           {
             name = "Asahi config";
-            patch = null;
+            patch = ./m3_fix_vgic_v3.patch;
             structuredExtraConfig = with lib.kernel; {
               # Needed for GPU
               ARM64_16K_PAGES = yes;

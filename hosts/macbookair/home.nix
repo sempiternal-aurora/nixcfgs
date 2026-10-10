@@ -31,6 +31,7 @@ in
   home.stateVersion = "24.05"; # Please read the comment before changing.
 
   mine = {
+    mail.enable = true;
     terminal = {
       newsboat = true;
       spotify-player = true;

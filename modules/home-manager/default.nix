@@ -12,5 +12,6 @@
     ./mathematica.nix
     ./firefox.nix
     ./emacs.nix
+    ./mail.nix
   ];
 }

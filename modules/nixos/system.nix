@@ -51,6 +51,10 @@
         pkgs.git
         pkgs.tmux
         pkgs.sl
+        pkgs.alacritty.terminfo
+        pkgs.ghostty.terminfo
+        pkgs.kitty.terminfo
+        pkgs.tmux.terminfo
       ]
       ++ lib.lists.optional config.mine.yazi.enable pkgs.yazi
       ++ lib.lists.optionals config.mine.usbhotspot.enable [
@@ -58,6 +62,12 @@
         pkgs.usb-modeswitch
       ]
       ++ lib.lists.optional config.mine.uutils.enable (lib.hiPrio pkgs.uutils-coreutils-noprefix);
+      sessionVariables = {
+        XDG_CACHE_HOME = "$HOME/.cache";
+        XDG_CONFIG_HOME = "$HOME/.config";
+        XDG_DATA_HOME = "$HOME/.local/share";
+        XDG_STATE_HOME = "$HOME/.local/state";
+      };
     };
 
     # environment.etc = {
@@ -69,15 +79,5 @@
     #     mode = "0755";
     #   };
     # };
-
-    environment = {
-      enableAllTerminfo = true;
-      sessionVariables = {
-        XDG_CACHE_HOME = "$HOME/.cache";
-        XDG_CONFIG_HOME = "$HOME/.config";
-        XDG_DATA_HOME = "$HOME/.local/share";
-        XDG_STATE_HOME = "$HOME/.local/state";
-      };
-    };
   };
 }

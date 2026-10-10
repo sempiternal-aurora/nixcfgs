@@ -35,6 +35,10 @@
         pkgs.git
         pkgs.tmux
         pkgs.sl
+        pkgs.alacritty.terminfo
+        pkgs.ghostty-bin.terminfo
+        pkgs.kitty.terminfo
+        pkgs.tmux.terminfo
       ]
       ++ lib.lists.optional config.mine.firefox.enable pkgs.firefox
       ++ lib.lists.optional config.mine.discord.enable pkgs.discord
@@ -48,15 +52,6 @@
       ++ lib.lists.optional config.mine.element.enable pkgs.element-desktop
       ++ lib.lists.optional config.mine.ghostty.enable pkgs.ghostty-bin
       ++ lib.lists.optional config.mine.yazi.enable pkgs.yazi;
-    };
-
-    programs._1password-gui.enable = config.mine._1password.enable;
-    programs._1password.enable = config.mine._1password.enable;
-
-    security.pam.services.sudo_local.touchIdAuth = true;
-
-    environment = {
-      enableAllTerminfo = true;
       variables = {
         XDG_CACHE_HOME = "$HOME/.cache";
         XDG_CONFIG_HOME = "$HOME/.config";
@@ -64,6 +59,11 @@
         XDG_STATE_HOME = "$HOME/.local/state";
       };
     };
+
+    programs._1password-gui.enable = config.mine._1password.enable;
+    programs._1password.enable = config.mine._1password.enable;
+
+    security.pam.services.sudo_local.touchIdAuth = true;
 
     # Prevents slow shell startup, we already compinit per-user,
     # don't need to do it at the system level too.

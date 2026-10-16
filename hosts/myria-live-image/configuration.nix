@@ -106,7 +106,10 @@ args@{
       caps2esc = true;
     };
 
-    sway.enable = true;
+    sway = {
+      enable = true;
+      fx = true;
+    };
     audio.enable = true;
     networking = {
       enable = true;

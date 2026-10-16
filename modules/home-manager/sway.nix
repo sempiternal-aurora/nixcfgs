@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  osConfig,
   pkgs,
   ...
 }:
@@ -59,7 +60,12 @@ in
   options = {
     mine.sway = {
       enable = lib.mkEnableOption "enable sway module";
-      fx = lib.mkEnableOption "Extra SwayFX config";
+      fx = lib.mkOption {
+        description = "Whether to use SwayFX as the sway implementation";
+        type = lib.types.bool;
+        default = osConfig.mine.sway.fx;
+        defaultText = "osConfig.mine.sway.fx";
+      };
       idle = lib.mkEnableOption "Whether to use swayidle";
       powercheck = lib.mkEnableOption "enable low power notifications";
       wallpaper = lib.mkOption {

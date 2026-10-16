@@ -80,7 +80,10 @@ args@{
       caps2esc = true;
     };
     ly.enable = true;
-    sway.enable = true;
+    sway = {
+      enable = true;
+      fx = true;
+    };
     audio.enable = true;
     steam.enable = false;
     lutris.enable = false;

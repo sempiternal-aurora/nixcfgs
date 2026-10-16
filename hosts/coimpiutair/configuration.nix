@@ -123,7 +123,10 @@ args@{
       command = "${pkgs.greetd.tuigreet}/bin/tuigreet --cmd \"systemd-cat --identifier=sway sway\"";
     };
     ly.enable = true;
-    sway.enable = true;
+    sway = {
+      enable = true;
+      fx = true;
+    };
     audio.enable = true;
     steam.enable = true;
     lutris.enable = true;

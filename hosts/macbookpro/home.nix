@@ -57,7 +57,7 @@ in
       enable = isLinux;
       idle = true;
       powercheck = true;
-      fx = true;
+      fx = false;
       terminal = lib.mkIf isLinux (lib.getExe pkgs.ghostty);
     };
     zoom.enable = false;

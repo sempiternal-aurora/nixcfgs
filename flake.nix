@@ -191,6 +191,7 @@
         {
           inherit (pkgs)
             petro_bot
+            linux-asahi
             afp
             apmc
             ;

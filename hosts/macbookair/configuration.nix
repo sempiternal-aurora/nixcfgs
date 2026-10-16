@@ -28,6 +28,7 @@ args@{
       efi.canTouchEfiVariables = false;
     };
     initrd.systemd.enable = true;
+    kernelPackages = lib.mkForce (pkgs.linux-asahi);
   };
 
   hardware.asahi = {

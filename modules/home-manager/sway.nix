@@ -14,24 +14,25 @@ let
   font = pkgs.nerd-fonts.hasklug;
   warnDischarge = "10";
   warnCharge = "90";
+  sway = if cfg.fx or false then pkgs.swayfx else pkgs.sway;
   swaylock = lib.getExe pkgs.swaylock-effects;
-  pgrep = "${pkgs.procps}/bin/pgrep";
-  swaymsg = "${pkgs.swayfx}/bin/swaymsg";
+  pgrep = lib.getExe' pkgs.procps "pgrep";
+  swaymsg = lib.getExe' sway "swaymsg";
   playerctl = lib.getExe pkgs.playerctl;
-  wl-copy = "${pkgs.wl-clipboard}/bin/wl-copy";
+  wl-copy = lib.getExe' pkgs.wl-clipboard "wl-copy";
   firefox = lib.getExe pkgs.firefox;
-  kill = "${pkgs.procps}/bin/kill";
+  kill = lib.getExe' pkgs.procps "kill";
   polkit-mate = "${pkgs.mate-polkit}/libexec/polkit-mate-authentication-agent-1";
   acpi = lib.getExe pkgs.acpi;
   grep = lib.getExe pkgs.gnugrep;
-  wc = "${pkgs.coreutils}/bin/wc";
-  sleep = "${pkgs.coreutils}/bin/sleep";
-  dunstify = "${pkgs.dunst}/bin/dunstify";
+  wc = lib.getExe' pkgs.coreutils "wc";
+  sleep = lib.getExe' pkgs.coreutils "sleep";
+  dunstify = lib.getExe' pkgs.dunst "dunstify";
   grim = lib.getExe pkgs.grim;
   swappy = lib.getExe pkgs.swappy;
   slurp = lib.getExe pkgs.slurp;
   nm-applet = lib.getExe pkgs.networkmanagerapplet;
-  blueman-applet = "${pkgs.blueman}/bin/blueman-applet";
+  blueman-applet = lib.getExe' pkgs.blueman "blueman-applet";
   rquickshare = lib.getExe pkgs.rquickshare;
   fish = lib.getExe pkgs.fish;
   powercheck = pkgs.writeShellScriptBin "powercheck" ''
@@ -49,11 +50,6 @@ let
       if [[ $current_charge -le $warn_discharge ]]; then
         ${dunstify} -r 7693 -u critical "Low Battery!" "Charge is at ''${current_charge} percent!"
       fi
-    #elif [[ $( acpi | grep "Battery ''${battery_num}: Charging" | wc -l) == 1 ]]; then
-    #  current_charge=$(acpi | grep -o "Battery ''${battery_num}: Charging, [0-9]*%" | grep -o "[0-9]*%" | grep -o "[0-9]*")
-    #  if [[ $current_charge -ge $warn_charge ]]; then
-    #    dunstify -r 7693 -u critical "Stop Charging!" "Battery is at ''${current_charge} percent!"
-    #  fi
     else
       ${dunstify} -C 7693
     fi
@@ -547,7 +543,7 @@ in
           Service = {
             Type = "simple";
             ExecStartPre = sleep + " 1";
-            ExecStart = "${pkgs.udiskie}/bin/udiskie";
+            ExecStart = lib.getExe' pkgs.udiskie "udiskie";
             ExecReload = "${kill} -SIGUSR2 $MAINPID";
             Restart = "on-failure";
             KillMode = "mixed";

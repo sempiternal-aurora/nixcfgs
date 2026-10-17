@@ -60,7 +60,7 @@ in
       idle = true;
       powercheck = true;
       fx = true;
-      terminal = lib.mkIf isLinux (lib.getExe pkgs.ghostty);
+      terminal.executable = lib.mkIf isLinux (lib.getExe pkgs.ghostty);
     };
     zoom.enable = false;
     teams.enable = isLinux;

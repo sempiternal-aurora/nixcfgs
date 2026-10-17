@@ -72,9 +72,15 @@ in
         default = "~/Pictures/Wallpapers/wallpaper";
         type = lib.types.str;
       };
-      terminal = lib.mkOption {
-        default = lib.getExe pkgs.ghostty;
-        type = lib.types.str;
+      terminal = {
+        executable = lib.mkOption {
+          default = lib.getExe pkgs.ghostty;
+          type = lib.types.str;
+        };
+        opacity = lib.mkOption {
+          default = 0.9;
+          type = lib.types.numbers.between 0 1;
+        };
       };
     };
     mine.zoom.enable = lib.mkEnableOption "enable zoom module";
@@ -191,7 +197,7 @@ in
       };
       settings = {
         disable_ligatures = "cursor";
-        background_opacity = 0.9;
+        background_opacity = cfg.terminal.opacity;
       };
       keybindings = {
         "kitty_mod+r" = "no-op";
@@ -208,7 +214,7 @@ in
         theme = "dracula";
         command = "${fish} --interactive";
         maximize = true;
-        background-opacity = 0.9;
+        background-opacity = cfg.terminal.opacity;
       };
       themes = {
         dracula = {
@@ -308,7 +314,7 @@ in
       package = null;
       config = {
         modifier = modifier;
-        terminal = cfg.terminal;
+        terminal = cfg.terminal.executable;
         menu = menu;
         fonts = {
           names = [ "Hasklug Nerd Font Mono" ];
@@ -1067,7 +1073,7 @@ in
       enable = true;
       settings = {
         program_options = {
-          terminal = "${cfg.terminal} -d";
+          terminal = "${cfg.terminal.executable} -d";
         };
       };
     };

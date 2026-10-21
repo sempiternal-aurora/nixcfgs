@@ -14,21 +14,21 @@
       enable = true;
       group = "www-data";
       virtualHosts = {
-        # Holonet archives
-        "holonet.myria.dev" = {
-          extraConfig = ''
-            root * /var/www/holonet.myria.dev/public_html
-            file_server
-            php_fastcgi unix/${config.services.phpfpm.pools.holonet.socket}
-          '';
-        };
-        "holonet.auroracod.ing" = {
-          extraConfig = ''
-            root * /var/www/holonet.auroracod.ing/public_html
-            file_server
-            php_fastcgi unix/${config.services.phpfpm.pools.holonet.socket}
-          '';
-        };
+        # # Holonet archives
+        # "holonet.myria.dev" = {
+        #   extraConfig = ''
+        #     root * /var/www/holonet.myria.dev/public_html
+        #     file_server
+        #     php_fastcgi unix/${config.services.phpfpm.pools.holonet.socket}
+        #   '';
+        # };
+        # "holonet.auroracod.ing" = {
+        #   extraConfig = ''
+        #     root * /var/www/holonet.auroracod.ing/public_html
+        #     file_server
+        #     php_fastcgi unix/${config.services.phpfpm.pools.holonet.socket}
+        #   '';
+        # };
 
         "irc.myria.dev" = {
           extraConfig = ''
@@ -141,26 +141,26 @@
       pkgs.petro_bot
     ];
 
-    services.phpfpm = {
-      phpOptions = ''
-        display_errors = off;
-      '';
-      pools.holonet = {
-        user = "php";
-        group = "www-data";
-        phpPackage = pkgs.php;
-        settings = {
-          "listen.owner" = "php";
-          "listen.group" = "www-data";
-          "pm" = "dynamic";
-          "pm.max_children" = 10;
-          "pm.start_servers" = 3;
-          "pm.min_spare_servers" = 2;
-          "pm.max_spare_servers" = 5;
-          "pm.max_requests" = 500;
-        };
-      };
-    };
+    # services.phpfpm = {
+    #   phpOptions = ''
+    #     display_errors = off;
+    #   '';
+    #   pools.holonet = {
+    #     user = "php";
+    #     group = "www-data";
+    #     phpPackage = pkgs.php;
+    #     settings = {
+    #       "listen.owner" = "php";
+    #       "listen.group" = "www-data";
+    #       "pm" = "dynamic";
+    #       "pm.max_children" = 10;
+    #       "pm.start_servers" = 3;
+    #       "pm.min_spare_servers" = 2;
+    #       "pm.max_spare_servers" = 5;
+    #       "pm.max_requests" = 500;
+    #     };
+    #   };
+    # };
 
     users = {
       groups = {

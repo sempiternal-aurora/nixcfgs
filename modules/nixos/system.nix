@@ -13,6 +13,7 @@
     mine.brillo.enable = lib.mkEnableOption "brightness cli controls";
     mine.yazi.enable = lib.mkEnableOption "rust terminal file manager";
     mine.uutils.enable = lib.mkEnableOption "uutils coreutils rust replacement";
+    mine.kpep.enable = lib.mkEnableOption "Install kpep files extracted from macOS";
   };
   config = {
     nix.settings.experimental-features = [
@@ -69,6 +70,24 @@
         XDG_STATE_HOME = "$HOME/.local/state";
       };
     };
+
+    systemd.tmpfiles.settings."10-kpep" =
+      let
+        kpep = pkgs.requireFile {
+          name = "macOS_27";
+          hashMode = "recursive";
+          hash = "sha256-FGpoozZto+9fdRcwnOImV9qKK1JsoYfj9BbBUM45qZo=";
+          message = ''
+            Add the file to the store:
+            $ nix store add /path/to/macOS_27/kpep/folder
+            Get the hash:
+            $ nix store hash path --algo sha256 /path/to/macOS_27/kpep/folder
+          '';
+        };
+      in
+      lib.mkIf config.mine.kpep.enable {
+        "/usr/share/kpep".L.argument = "${kpep}";
+      };
 
     # environment.etc = {
     #   "1password/custom_allowed_browsers" = {

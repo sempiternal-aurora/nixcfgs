@@ -73,6 +73,7 @@ args@{
       "zoom"
       "nordvpn"
       "vendorfw"
+      "macOS_27"
     ];
 
   mine = {
@@ -99,6 +100,7 @@ args@{
       bluetooth.enable = true;
       kapla.enable = true;
     };
+    kpep.enable = true;
     printing.enable = true;
     brillo.enable = true;
     udisks2.enable = true;

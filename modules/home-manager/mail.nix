@@ -73,6 +73,9 @@ in
           set header_cache = ~/.cache/mutt/headers
           set message_cachedir = ~/.cache/mutt/bodies
 
+          # Use GPGME to verify/sign mail
+          set crypt_use_gpgme
+
           # Shortcuts to Switch Accounts (Press F2 for Gmail, F3 for Outlook)
           folder-hook ~/Mail/Gmail/* 'source ~/.config/mutt/gmail.muttrc'
           folder-hook ~/Mail/Outlook/* 'source ~/.config/mutt/outlook.muttrc'

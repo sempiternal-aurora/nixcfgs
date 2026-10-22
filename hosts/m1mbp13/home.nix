@@ -32,10 +32,10 @@ in
 
   mine = {
     terminal = {
-      newsboat = true;
-      spotify-player = true;
+      newsboat = false;
+      spotify-player = false;
       weechat = false;
-      senpai = true;
+      senpai = false;
       trash = true;
       mercurial = true;
       zip = true;
@@ -49,8 +49,8 @@ in
       lf = false;
       yazi = true;
       starship = true;
-      yt-dlp = true;
-      maintained = true;
+      yt-dlp = false;
+      maintained = false;
     };
     direnv.enable = true;
     sway = {
@@ -61,7 +61,7 @@ in
       terminal.executable = lib.mkIf isLinux (lib.getExe pkgs.ghostty);
     };
     zoom.enable = false;
-    teams.enable = isLinux;
+    teams.enable = false;
     _1password = {
       enable = true;
       kwallet.enable = isLinux;
@@ -69,17 +69,14 @@ in
     nvim = {
       enable = true;
       default = true;
-      latex = isLinux;
+      latex = false;
       xdg-mime = isLinux;
     };
-    isabelle = {
-      enable = isLinux;
-      enableNeovimIntegration = true;
-    };
+    isabelle.enable = false;
     jetbrains.enable = false;
     discord.enable = isDarwin;
-    calibre.enable = isLinux;
-    digital.enable = isLinux;
+    calibre.enable = false;
+    digital.enable = false;
     firefox.enable = true;
   };
 

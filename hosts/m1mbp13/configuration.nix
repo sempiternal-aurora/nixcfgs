@@ -50,6 +50,15 @@ args@{
     };
   };
 
+  hardware.apple.touchBar = {
+    enable = true;
+    settings = {
+      MediaLayerDefault = true;
+      ShowButtonOutlines = false;
+      EnablePixelShift = true;
+    };
+  };
+
   admin-user = {
     enable = true;
     userName = vars.adminUser;

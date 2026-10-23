@@ -310,7 +310,6 @@ in
 
     wayland.windowManager.sway = {
       enable = true;
-      checkConfig = false; # Temporary build fix (see https://github.com/nix-community/home-manager/issues/5379 )
       package = null;
       config = {
         modifier = modifier;
@@ -373,7 +372,9 @@ in
           "XF86AudioNext" = "exec playerctl next";
           "XF86AudioPrev" = "exec playerctl previous";
           "XF86Search" = "exec \"${drun}\"";
-          "XF86LaunchA" = "exec tofi-books";
+          "XF86LaunchA" = "scratchpad show";
+          "Shift+XF86LaunchA" = "move scratchpad";
+          "${modifier}+XF86LaunchA" = "floating toggle";
           "XF86MonBrightnessUp" = "exec brillo -l -q -A 5";
           "XF86MonBrightnessDown" = "exec brillo -l -q -U 5";
           "XF86KbdBrightnessUp" = "exec brillo -k -q -A 5";

@@ -27,7 +27,6 @@ args@{
         efiSysMountPoint = "/boot";
       };
     };
-    initrd.systemd.enable = true;
   };
 
   systemd.targets.multi-user.enable = true;

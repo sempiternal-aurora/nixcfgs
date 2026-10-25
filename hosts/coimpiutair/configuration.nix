@@ -79,7 +79,6 @@ args@{
         efiSysMountPoint = "/boot";
       };
     };
-    initrd.systemd.enable = true;
   };
 
   admin-user = {

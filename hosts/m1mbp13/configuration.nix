@@ -27,7 +27,6 @@ args@{
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = false;
     };
-    initrd.systemd.enable = true;
   };
 
   hardware.asahi = {

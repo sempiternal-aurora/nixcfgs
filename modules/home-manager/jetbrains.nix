@@ -11,9 +11,11 @@ in
   options = {
     mine.jetbrains.enable = lib.mkEnableOption "Whether to include jetbrains tools";
     mine.jetbrains.intellij = lib.mkEnableOption "Whether to install intellij";
+    mine.jetbrains.clion = lib.mkEnableOption "Whether to install clion";
   };
 
   config = lib.mkIf cfg.enable {
-    home.packages = lib.lists.optional cfg.intellij pkgs.intellij-idea;
+    home.packages =
+      lib.lists.optional cfg.intellij pkgs.intellij-idea ++ lib.lists.optional cfg.clion pkgs.clion;
   };
 }

@@ -79,7 +79,10 @@ in
       enable = isLinux;
       enableNeovimIntegration = true;
     };
-    jetbrains.enable = false;
+    jetbrains = {
+      enable = true;
+      clion = true;
+    };
     discord.enable = isDarwin;
     calibre.enable = isLinux;
     digital.enable = isLinux;
@@ -99,6 +102,7 @@ in
       "1password"
       "1password-gui"
       "intellij-idea"
+      "clion"
       "mathematica"
       "zoom"
     ];

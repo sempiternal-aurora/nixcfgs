@@ -56,6 +56,20 @@ args@{
     homeManager = import ./home.nix (args // { userName = vars.adminUser; });
   };
 
+  nixpkgs.overlays = [
+    (final: prev: {
+      m1n1 = prev.m1n1.overrideAttrs {
+        version = "2.0.0-unstable-2026-10-30";
+        src = prev.fetchFromGitHub {
+          owner = "jannau";
+          repo = "m1n1";
+          rev = "0405f1f0a36ab79bcd755f1488e0bbbac727e204";
+          hash = "sha256-iKhC6HkQ6ane1CntEHqb5CvMziRNb6o11D8LLvg0T1Q=";
+        };
+      };
+    })
+  ];
+
   # Allow unfree licences for some packages
   nixpkgs.config.allowUnfreePredicate =
     pkg:

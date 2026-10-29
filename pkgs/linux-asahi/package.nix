@@ -25,16 +25,16 @@ let
       lib.recursiveUpdate rec {
         inherit stdenv lib;
 
-        pname = "linux-asahi";
-        version = "7.2.11";
+        pname = "linux-asahi-myria";
+        version = "7.2.13";
         modDirVersion = version;
         extraMeta.branch = "7.2";
 
         src = fetchFromGitHub {
           owner = "AsahiLinux";
           repo = "linux";
-          tag = "asahi-7.2.11-1";
-          hash = "sha256-ufSCQkqzzuU+bvNOF90QZY5xPw3PylQrgpIILYaoDeM=";
+          rev = "968e29a08ceb52a17b48ecc238d53ce9ec552cf4";
+          hash = "sha256-7FURfu6wal3INwWi00gKYkd6ELrjT3HPpJA429mOA3o=";
         };
 
         kernelPatches = [

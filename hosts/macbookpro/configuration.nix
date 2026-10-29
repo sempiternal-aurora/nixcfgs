@@ -27,7 +27,7 @@ args@{
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = false;
     };
-    # kernelPackages = lib.mkForce (pkgs.linux-asahi);
+    kernelPackages = lib.mkForce (pkgs.linux-asahi);
   };
 
   hardware.asahi = {

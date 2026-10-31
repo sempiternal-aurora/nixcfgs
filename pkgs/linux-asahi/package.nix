@@ -26,15 +26,15 @@ let
         inherit stdenv lib;
 
         pname = "linux-asahi-myria";
-        version = "7.2.13";
+        version = "7.2.14";
         modDirVersion = version;
         extraMeta.branch = "7.2";
 
         src = fetchFromGitHub {
           owner = "AsahiLinux";
           repo = "linux";
-          rev = "968e29a08ceb52a17b48ecc238d53ce9ec552cf4";
-          hash = "sha256-7FURfu6wal3INwWi00gKYkd6ELrjT3HPpJA429mOA3o=";
+          rev = "asahi-7.2.14-1";
+          hash = "sha256-oY14m+oQv3BRU5fRbGxnrmYTVo7nRc3OKyj3jlg5wFs=";
         };
 
         kernelPatches = [

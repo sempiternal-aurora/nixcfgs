@@ -251,16 +251,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1793405943,
-        "narHash": "sha256-muS+g0d0tKk58QBYNLjOZUk/1SC4pukAMlPAvTBxKsI=",
+        "lastModified": 1793692725,
+        "narHash": "sha256-7mahlsFqgOtRsgjo0N4nvCKoDLRTm54KEy2rgIKP/o8=",
         "owner": "sempiternal-aurora",
         "repo": "nixos-apple-silicon",
-        "rev": "3ac930014a8990f9a31f65a1e3b8e3c946488d64",
+        "rev": "b4c2266915128c6ded6398b11da580d5ba5b5bc4",
         "type": "github"
       },
       "original": {
         "owner": "sempiternal-aurora",
-        "ref": "main",
+        "ref": "uboot-fix-dtbs",
         "repo": "nixos-apple-silicon",
         "type": "github"
       }

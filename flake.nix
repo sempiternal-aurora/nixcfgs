@@ -43,7 +43,7 @@
     };
 
     nixos-apple-silicon = {
-      url = "github:sempiternal-aurora/nixos-apple-silicon/main";
+      url = "github:sempiternal-aurora/nixos-apple-silicon/uboot-fix-dtbs";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

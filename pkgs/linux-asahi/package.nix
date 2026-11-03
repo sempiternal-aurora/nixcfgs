@@ -31,10 +31,10 @@ let
         extraMeta.branch = "7.2";
 
         src = fetchFromGitHub {
-          owner = "AsahiLinux";
+          owner = "sempiternal-aurora";
           repo = "linux";
-          rev = "asahi-7.2.14-1";
-          hash = "sha256-oY14m+oQv3BRU5fRbGxnrmYTVo7nRc3OKyj3jlg5wFs=";
+          rev = "bc21be3521eec524b3d9ea3062c4ce436e2bbb5a";
+          hash = "sha256-IDpdvX1CVIruQ0ExieZE2KHRYiw8luEtSpjPUN6bOVE=";
         };
 
         kernelPatches = [

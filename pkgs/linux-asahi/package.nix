@@ -26,18 +26,26 @@ let
         inherit stdenv lib;
 
         pname = "linux-asahi-myria";
-        version = "7.2.14";
+        version = "7.2.15";
         modDirVersion = version;
         extraMeta.branch = "7.2";
 
         src = fetchFromGitHub {
-          owner = "sempiternal-aurora";
+          owner = "AsahiLinux";
           repo = "linux";
-          rev = "bc21be3521eec524b3d9ea3062c4ce436e2bbb5a";
-          hash = "sha256-IDpdvX1CVIruQ0ExieZE2KHRYiw8luEtSpjPUN6bOVE=";
+          tag = "asahi-7.2.15-2";
+          hash = "sha256-q5kIQl0w/yn4dqM5rPqq2pFenxgi53XjCBa3MUlyQKI=";
         };
 
         kernelPatches = [
+          {
+            name = "M3/M4 PMU Support";
+            patch = ./more_pmu_support.patch;
+            structurdedExtraConfig = with lib.kernel; {
+              # Can not be built as a module, defaults to no
+              APPLE_M1_CPU_PMU = yes;
+            };
+          }
           {
             name = "Asahi config";
             patch = ./m3_fix_vgic_v3.patch;
@@ -50,9 +58,6 @@ let
 
               # Might lead to the machine rebooting if not loaded soon enough
               APPLE_WATCHDOG = yes;
-
-              # Can not be built as a module, defaults to no
-              APPLE_M1_CPU_PMU = yes;
 
               # Defaults to 'y', but we want to allow the user to set options in modprobe.d
               HID_APPLE = module;

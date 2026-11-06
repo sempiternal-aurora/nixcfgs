@@ -78,10 +78,7 @@ in
       enable = isLinux;
       enableNeovimIntegration = true;
     };
-    jetbrains = {
-      enable = true;
-      intellij = true;
-    };
+    jetbrains.enable = false;
     discord.enable = isDarwin;
     calibre.enable = isLinux;
     digital.enable = isLinux;

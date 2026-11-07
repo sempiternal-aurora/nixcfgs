@@ -35,19 +35,11 @@ args@{
     avd = {
       enable = true;
       vaapi-support = true;
+      codecs = [ "all" ];
     };
     setupAsahiSound = true;
-    peripheralFirmwareDirectory = pkgs.requireFile {
-      name = "vendorfw";
-      hashMode = "recursive";
-      hash = "sha256-4T4/SE66zVJoPfgx6ppcx5s1YEG0y43d9YmVhzaBOco=";
-      message = ''
-        Add the file to the store:
-        $ sudo nix store add /etc/nixos/firmware
-        Get the hash:
-        $ sudo nix hash path --algo sha256 /etc/nixos/firmware
-      '';
-    };
+    extractPeripheralFirmware = true;
+    peripheralFirmwareDirectory = null;
   };
 
   admin-user = {

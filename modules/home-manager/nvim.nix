@@ -24,6 +24,22 @@ in
       };
     };
 
+    nixpkgs.overlays = [
+      (final: prev: {
+        vimPlugins = prev.vimPlugins // {
+          ansi-nvim = final.vimUtils.buildVimPlugin {
+            name = "ansi.nvim";
+            src = final.fetchFromGitHub {
+              owner = "0xferrous";
+              repo = "ansi.nvim";
+              rev = "195b64c3da1c22c2e95648dcbdc6ed075d507064";
+              hash = "sha256-GrU7Q6ZTzSWnZaNoU+yh2BDYweY6RQx6p+RNNvGx8nY=";
+            };
+          };
+        };
+      })
+    ];
+
     programs.neovim = {
       enable = true;
       defaultEditor = cfg.default;
@@ -169,6 +185,17 @@ in
           config = builtins.readFile ./source/treesitter.lua;
         }
         haskell-tools-nvim
+        {
+          plugin = ansi-nvim;
+          type = "lua";
+          config = ''
+            require("ansi").setup({
+              auto_enable = true,
+              auto_enable_stdin = true,
+              filetypes = { 'log', 'ansi', 'results' },
+            })
+          '';
+        }
       ];
 
       initLua = ''

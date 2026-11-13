@@ -23,6 +23,8 @@
 
     boot.tmp.cleanOnBoot = true;
 
+    hardware.asahi.enable = config.mine.asahi.enable;
+
     # Define your hostname.
     networking.hostName = vars.configuration;
 

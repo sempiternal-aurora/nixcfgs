@@ -87,7 +87,6 @@
           };
           modules = [
             ./hosts/myria-live-image/configuration.nix
-            inputs.home-manager.nixosModules.default
             { nixpkgs.overlays = [ self.outputs.overlays.default ]; }
           ];
         };
@@ -104,7 +103,6 @@
           };
           modules = [
             ./hosts/coimpiutair/configuration.nix
-            inputs.home-manager.nixosModules.default
             inputs.nixos-hardware.nixosModules.framework-13-7040-amd
             { nixpkgs.overlays = [ self.outputs.overlays.default ]; }
           ];
@@ -121,7 +119,6 @@
           };
           modules = [
             ./hosts/deideag/configuration.nix
-            inputs.home-manager.nixosModules.default
             { nixpkgs.overlays = [ self.outputs.overlays.default ]; }
           ];
         };
@@ -137,8 +134,6 @@
           };
           modules = [
             ./hosts/macbookair/configuration.nix
-            inputs.home-manager.nixosModules.default
-            inputs.nixos-apple-silicon.nixosModules.default
             { nixpkgs.overlays = [ self.outputs.overlays.default ]; }
           ];
         };
@@ -154,8 +149,6 @@
           };
           modules = [
             ./hosts/macbookpro/configuration.nix
-            inputs.home-manager.nixosModules.default
-            inputs.nixos-apple-silicon.nixosModules.default
             { nixpkgs.overlays = [ self.outputs.overlays.default ]; }
           ];
         };
@@ -171,8 +164,6 @@
           };
           modules = [
             ./hosts/m1mbp13/configuration.nix
-            inputs.home-manager.nixosModules.default
-            inputs.nixos-apple-silicon.nixosModules.default
             { nixpkgs.overlays = [ self.outputs.overlays.default ]; }
           ];
         };

@@ -17,46 +17,7 @@ args@{
     # and copying the result from /etc/nixos
     ./hardware-configuration.nix
     ../../modules/nixos
-    inputs.home-manager.nixosModules.default
-    inputs.nixos-apple-silicon.nixosModules.default
   ];
-
-  # Use the systemd-boot EFI boot loader.
-  boot = {
-    loader = {
-      systemd-boot.enable = true;
-      efi.canTouchEfiVariables = false;
-    };
-  };
-
-  hardware.asahi = {
-    enable = true;
-    avd = {
-      enable = true;
-      vaapi-support = true;
-    };
-    setupAsahiSound = true;
-    peripheralFirmwareDirectory = pkgs.requireFile {
-      name = "vendorfw";
-      hashMode = "recursive";
-      hash = "sha256-xrooV8lBWkMt4QFguZxls80XKewiUHliSpbjavWHscU=";
-      message = ''
-        Add the file to the store:
-        $ sudo nix store add /boot/vendorfw
-        Get the hash:
-        $ sudo nix hash path --algo sha256 /boot/vendorfw
-      '';
-    };
-  };
-
-  hardware.apple.touchBar = {
-    enable = true;
-    settings = {
-      MediaLayerDefault = true;
-      ShowButtonOutlines = false;
-      EnablePixelShift = true;
-    };
-  };
 
   admin-user = {
     enable = true;
@@ -93,6 +54,10 @@ args@{
       fx = true;
     };
     audio.enable = true;
+    asahi = {
+      enable = true;
+      touchBar.enable = true;
+    };
     steam.enable = false;
     lutris.enable = false;
     itch.enable = false;
@@ -145,12 +110,6 @@ args@{
     settings = {
       auto-optimise-store = true;
       sandbox = true;
-      extra-substituters = [
-        "https://nixos-apple-silicon.cachix.org"
-      ];
-      extra-trusted-public-keys = [
-        "nixos-apple-silicon.cachix.org-1:8psDu5SA5dAD7qA0zMy5UT292TxeEPzIz8VVEr2Js20="
-      ];
       trusted-users = [
         "root"
         vars.adminUser

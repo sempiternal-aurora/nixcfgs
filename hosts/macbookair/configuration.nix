@@ -17,30 +17,7 @@ args@{
     # and copying the result from /etc/nixos
     ./hardware-configuration.nix
     ../../modules/nixos
-    inputs.home-manager.nixosModules.default
-    inputs.nixos-apple-silicon.nixosModules.default
   ];
-
-  # Use the systemd-boot EFI boot loader.
-  boot = {
-    loader = {
-      systemd-boot.enable = true;
-      efi.canTouchEfiVariables = false;
-    };
-    kernelPackages = lib.mkForce (pkgs.linux-asahi);
-  };
-
-  hardware.asahi = {
-    enable = true;
-    avd = {
-      enable = true;
-      vaapi-support = true;
-      codecs = [ "all" ];
-    };
-    setupAsahiSound = true;
-    extractPeripheralFirmware = true;
-    peripheralFirmwareDirectory = null;
-  };
 
   admin-user = {
     enable = true;
@@ -77,6 +54,10 @@ args@{
       enable = true;
       fx = true;
     };
+    asahi = {
+      enable = true;
+      kpep.enable = true;
+    };
     audio.enable = true;
     steam.enable = false;
     lutris.enable = false;
@@ -91,7 +72,6 @@ args@{
       bluetooth.enable = true;
       kapla.enable = true;
     };
-    kpep.enable = true;
     printing.enable = true;
     brillo.enable = true;
     udisks2.enable = true;
@@ -131,12 +111,6 @@ args@{
     settings = {
       auto-optimise-store = true;
       sandbox = true;
-      extra-substituters = [
-        "https://nixos-apple-silicon.cachix.org"
-      ];
-      extra-trusted-public-keys = [
-        "nixos-apple-silicon.cachix.org-1:8psDu5SA5dAD7qA0zMy5UT292TxeEPzIz8VVEr2Js20="
-      ];
       trusted-users = [
         "root"
         vars.adminUser

@@ -1,5 +1,9 @@
+{ inputs, ... }:
 {
   imports = [
+    inputs.home-manager.nixosModules.default
+    inputs.nixos-apple-silicon.nixosModules.default
+    ./asahi.nix
     ./admin-user.nix
     ./network.nix
     ./containers.nix

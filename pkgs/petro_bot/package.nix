@@ -1,6 +1,7 @@
 {
   rustPlatform,
   fetchFromGitHub,
+  sqlite,
 }:
 rustPlatform.buildRustPackage {
   pname = "petro_bot";
@@ -14,4 +15,8 @@ rustPlatform.buildRustPackage {
   };
 
   cargoHash = "sha256-9DiUBvxLksWkxaE+gFkbQ1xmKjNeyuwQGPwhPmF2Adw=";
+
+  buildInputs = [
+    sqlite
+  ];
 }

@@ -15,6 +15,7 @@ args@{
   # Necessary for using flakes on this system.
   nix = {
     settings = {
+      sandbox = "relaxed";
       trusted-users = [
         "@admin"
         "root"
@@ -38,13 +39,13 @@ args@{
       caps2esc = true;
     };
     _1password.enable = true;
-    firefox.enable = true;
+    firefox.enable = false;
     yazi.enable = true;
-    discord.enable = true;
-    element.enable = true;
-    zoom.enable = true;
+    discord.enable = false;
+    element.enable = false;
+    zoom.enable = false;
     ghostty.enable = true;
-    teams.enable = true;
+    teams.enable = false;
   };
 
   admin-user = {

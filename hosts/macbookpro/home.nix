@@ -60,6 +60,7 @@ in
       fx = false;
       terminal = {
         executable = lib.mkIf isLinux (lib.getExe pkgs.ghostty);
+        command = lib.mkIf isDarwin "zsh";
         opacity = 1;
       };
     };
@@ -84,11 +85,10 @@ in
     calibre.enable = isLinux;
     digital.enable = isLinux;
     firefox.enable = true;
-  };
-
-  programs.ghostty = lib.mkIf isLinux {
-    package = null;
-    systemd.enable = false;
+    ghostty = {
+      enable = true;
+      package = if isDarwin then pkgs.ghostty-bin else null;
+    };
   };
 
   # Allow unfree licences for some packages
@@ -136,6 +136,12 @@ in
       dates = "weekly";
       options = "--delete-older-than 10d";
     };
+  };
+
+  targets.darwin = {
+    linkApps.enable = false;
+    copyApps.enable = true;
+    search = "DuckDuckGo";
   };
 
   # Let Home Manager install and manage itself.

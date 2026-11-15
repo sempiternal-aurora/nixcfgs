@@ -81,39 +81,49 @@ in
           default = 0.9;
           type = lib.types.numbers.between 0 1;
         };
+        command = lib.mkOption {
+          type = lib.types.str;
+          default = "${fish} --interactive";
+        };
       };
     };
     mine.zoom.enable = lib.mkEnableOption "enable zoom module";
     mine.teams.enable = lib.mkEnableOption "enable teams module";
     mine.discord.enable = lib.mkEnableOption "enable discord module";
+    mine.ghostty = {
+      enable = lib.mkEnableOption "enable ghostty configuration";
+      package = lib.mkPackageOption pkgs "ghostty" { };
+
+    };
   };
 
-  config = lib.mkIf cfg.enable {
-    home.packages = [
-      font
-      pkgs.wl-clipboard
-      pkgs.dconf
-      # pkgs.discord-krisp
-      pkgs.vlc
-      pkgs.pwvucontrol
-      pkgs.handlr-regex
-      pkgs.image-roll
-      pkgs.playerctl
-      pkgs.rquickshare
-      pkgs.viu
-    ]
-    ++ lib.lists.optional config.mine.discord.enable pkgs.discord
-    ++ lib.lists.optional config.mine.teams.enable pkgs.teams-for-linux
-    ++ lib.lists.optional config.mine.zoom.enable pkgs.zoom-us;
+  config = {
+    home.packages =
+      lib.lists.optional cfg.enable [
+        font
+        pkgs.wl-clipboard
+        pkgs.dconf
+        # pkgs.discord-krisp
+        pkgs.vlc
+        pkgs.pwvucontrol
+        pkgs.handlr-regex
+        pkgs.image-roll
+        pkgs.playerctl
+        pkgs.rquickshare
+        pkgs.viu
+      ]
+      ++ lib.lists.optional config.mine.discord.enable pkgs.discord
+      ++ lib.lists.optional config.mine.teams.enable pkgs.teams-for-linux
+      ++ lib.lists.optional config.mine.zoom.enable pkgs.zoom-us;
 
-    services.playerctld.enable = true;
+    services.playerctld.enable = cfg.enable;
 
     fonts.fontconfig = {
       enable = true;
       defaultFonts.monospace = [ "Hasklug Nerd Font Mono" ];
     };
 
-    xdg.mimeApps = {
+    xdg.mimeApps = lib.mkIf cfg.enable {
       enable = true;
       associations.added = { };
       defaultApplications = {
@@ -207,12 +217,13 @@ in
     };
 
     programs.ghostty = {
-      enable = true;
+      inherit (config.mine.ghostty) enable package;
+      systemd.enable = false;
       settings = {
+        inherit (config.mine.sway.terminal) command;
         font-family = "Hasklug Nerd Font Mono";
         font-size = "16";
         theme = "dracula";
-        command = "${fish} --interactive";
         maximize = true;
         background-opacity = cfg.terminal.opacity;
       };
@@ -253,7 +264,7 @@ in
       };
     };
 
-    programs.swaylock = {
+    programs.swaylock = lib.mkIf cfg.enable {
       enable = true;
       package = pkgs.swaylock-effects;
       settings = {
@@ -272,7 +283,7 @@ in
       };
     };
 
-    home.pointerCursor = {
+    home.pointerCursor = lib.mkIf cfg.enable {
       enable = true;
       gtk = {
         size = 24;
@@ -288,7 +299,7 @@ in
       size = 48;
     };
 
-    gtk = {
+    gtk = lib.mkIf cfg.enable {
       enable = true;
       font = {
         package = font;
@@ -308,7 +319,7 @@ in
       };
     };
 
-    wayland.windowManager.sway = {
+    wayland.windowManager.sway = lib.mkIf cfg.enable {
       enable = true;
       package = null;
       config = {
@@ -451,12 +462,12 @@ in
       NIXOS_OZONE_WL = "1";
     };
 
-    services.copyq = {
+    services.copyq = lib.mkIf cfg.enable {
       enable = true;
       systemdTarget = "sway-session.target";
     };
 
-    xdg.configFile."copyq/themes/dracula.ini" = {
+    xdg.configFile."copyq/themes/dracula.ini" = lib.mkIf cfg.enable {
       enable = true;
       source =
         pkgs.fetchFromGitHub {
@@ -468,7 +479,7 @@ in
         + "/dracula.ini";
     };
 
-    xdg.configFile."handlr/handlr.toml" = {
+    xdg.configFile."handlr/handlr.toml" = lib.mkIf cfg.enable {
       enable = true;
       text = ''
         enable_selector = true
@@ -478,7 +489,7 @@ in
       '';
     };
 
-    systemd.user = {
+    systemd.user = lib.mkIf cfg.enable {
       timers.powercheck = lib.mkIf cfg.powercheck {
         Unit = {
           Description = "periodically run powercheck";
@@ -618,7 +629,7 @@ in
       };
     };
 
-    services.swayidle = {
+    services.swayidle = lib.mkIf cfg.enable {
       enable = cfg.idle;
       events = {
         before-sleep = "${playerctl} pause; ${swaylock} -f";
@@ -641,7 +652,7 @@ in
       ];
     };
 
-    services.dunst = {
+    services.dunst = lib.mkIf cfg.enable {
       enable = true;
       iconTheme = {
         package = pkgs.dracula-icon-theme;
@@ -726,9 +737,11 @@ in
     };
 
     # The package provides some icons that are good to have available.
-    xdg.systemDirs.data = [ "${pkgs.networkmanagerapplet}/share" ];
+    xdg.systemDirs = lib.mkIf cfg.enable {
+      data = [ "${pkgs.networkmanagerapplet}/share" ];
+    };
 
-    programs.tofi = {
+    programs.tofi = lib.mkIf cfg.enable {
       enable = true;
       settings = {
         font = "\"${font}/share/fonts/opentype/NerdFonts/Hasklug/HasklugNerdFont-Regular.otf\"";
@@ -800,12 +813,12 @@ in
       };
     };
 
-    xdg.configFile."waybar/style.css" = {
+    xdg.configFile."waybar/style.css" = lib.mkIf cfg.enable {
       enable = true;
       source = ./source/style.css;
     };
 
-    programs.waybar = {
+    programs.waybar = lib.mkIf cfg.enable {
       enable = true;
       systemd = {
         enable = true;
@@ -1077,7 +1090,7 @@ in
       };
     };
 
-    services.udiskie = {
+    services.udiskie = lib.mkIf cfg.enable {
       enable = true;
       settings = {
         program_options = {

@@ -28,12 +28,12 @@ args@{
   nixpkgs.overlays = [
     (final: prev: {
       m1n1 = prev.m1n1.overrideAttrs {
-        version = "2.0.0-unstable-2026-10-30";
+        version = "2.0.0-unstable-2026-11-16";
         src = prev.fetchFromGitHub {
-          owner = "jannau";
+          owner = "AsahiLinux";
           repo = "m1n1";
-          rev = "0405f1f0a36ab79bcd755f1488e0bbbac727e204";
-          hash = "sha256-iKhC6HkQ6ane1CntEHqb5CvMziRNb6o11D8LLvg0T1Q=";
+          rev = "0e61e2bea91d99e18901d6ea01c21c92ae20c724";
+          hash = "sha256-jJZKL/MbG8AL7RQhz/maYWyiiflq5W1plOQ74VUUyNs=";
         };
       };
     })
@@ -70,7 +70,7 @@ args@{
     audio.enable = true;
     asahi = {
       enable = true;
-      kpep.enable = true;
+      kpep.enable = false;
     };
     steam.enable = false;
     lutris.enable = false;

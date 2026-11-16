@@ -138,7 +138,7 @@ in
     };
   };
 
-  targets.darwin = {
+  targets.darwin = lib.mkIf isDarwin {
     linkApps.enable = false;
     copyApps.enable = true;
     search = "DuckDuckGo";

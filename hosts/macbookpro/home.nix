@@ -87,7 +87,7 @@ in
     firefox.enable = true;
     ghostty = {
       enable = true;
-      package = if isDarwin then pkgs.ghostty-bin else null;
+      package = if isDarwin then pkgs.ghostty-bin else pkgs.ghostty;
     };
   };
 

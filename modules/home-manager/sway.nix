@@ -99,7 +99,7 @@ in
 
   config = {
     home.packages =
-      lib.lists.optional cfg.enable [
+      lib.lists.optionals cfg.enable [
         font
         pkgs.wl-clipboard
         pkgs.dconf
@@ -218,7 +218,7 @@ in
 
     programs.ghostty = {
       inherit (config.mine.ghostty) enable package;
-      systemd.enable = false;
+      # systemd.enable = false;
       settings = {
         inherit (config.mine.sway.terminal) command;
         font-family = "Hasklug Nerd Font Mono";
@@ -324,7 +324,7 @@ in
       package = null;
       config = {
         modifier = modifier;
-        terminal = cfg.terminal.executable;
+        terminal = "${cfg.terminal.executable} +new-window";
         menu = menu;
         fonts = {
           names = [ "Hasklug Nerd Font Mono" ];

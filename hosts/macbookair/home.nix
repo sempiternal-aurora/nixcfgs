@@ -60,7 +60,10 @@ in
       idle = true;
       powercheck = true;
       fx = true;
-      terminal.executable = lib.mkIf isLinux (lib.getExe pkgs.ghostty);
+      terminal = {
+        executable = lib.mkIf isLinux (lib.getExe pkgs.ghostty);
+        command = lib.mkIf isDarwin "zsh";
+      };
     };
     zoom.enable = false;
     teams.enable = isLinux;
@@ -83,11 +86,10 @@ in
     calibre.enable = isLinux;
     digital.enable = isLinux;
     firefox.enable = true;
-  };
-
-  programs.ghostty = lib.mkIf isLinux {
-    package = null;
-    systemd.enable = false;
+    ghostty = {
+      enable = true;
+      package = if isDarwin then pkgs.ghostty-bin else pkgs.ghostty;
+    };
   };
 
   # Allow unfree licences for some packages

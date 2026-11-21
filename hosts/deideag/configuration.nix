@@ -31,21 +31,26 @@ args@{
 
   systemd.targets.multi-user.enable = true;
 
-  users.mutableUsers = false;
   admin-user = {
     enable = true;
     userName = vars.adminUser;
     homeManager = import ./home.nix (args // { userName = vars.adminUser; });
+  };
+
+  local-user = {
+    enable = true;
+    userName = vars.localUser;
+    homeManager = import ./home.nix (args // { userName = vars.localUser; });
     sshKeys = import (
       pkgs.requireFile {
-        name = "nyla-ssh-keys.nix";
+        name = "myria-ssh-keys.nix";
         hashMode = "flat";
         hash = "sha256-JC9m9gZ/ZMlqw/aeVlNk6LmFkXPvKfRnIzTf2Ul2KUM=";
         message = ''
           Add the file to the store:
-          $ nix store add --mode flat nyla-ssh-keys.nix
+          $ nix store add --mode flat myria-ssh-keys.nix
           Get the hash:
-          $ nix hash file --type sha256 nyla-ssh-keys.nix
+          $ nix hash file --type sha256 myria-ssh-keys.nix
         '';
         meta.license = lib.licenses.free;
       }
@@ -66,8 +71,6 @@ args@{
   ];
 
   services.getty.autologinUser = null;
-
-  local-user.enable = false;
 
   # Allow unfree licences for some packages
   nixpkgs.config.allowUnfreePredicate =

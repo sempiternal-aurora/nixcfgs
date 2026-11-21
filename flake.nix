@@ -114,6 +114,7 @@
             inherit inputs;
             vars = {
               adminUser = "nyla";
+              localUser = "myria";
               configuration = "deideag";
             };
           };

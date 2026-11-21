@@ -111,6 +111,7 @@ in
         pkgs.playerctl
         pkgs.rquickshare
         pkgs.viu
+        pkgs.waypipe
       ]
       ++ lib.lists.optional config.mine.discord.enable pkgs.discord
       ++ lib.lists.optional config.mine.teams.enable pkgs.teams-for-linux

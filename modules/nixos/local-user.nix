@@ -16,9 +16,11 @@ in
       default = "localuser";
       description = "normal user's name";
     };
-    #local-user.sshKey = lib.mkOption {
-    #  description = "your users ssh key";
-    #};
+    local-user.sshKeys = lib.mkOption {
+      description = "your users ssh key";
+      default = [ ];
+      type = lib.types.listOf lib.types.str;
+    };
     local-user.homeManager = lib.mkOption {
       description = "primary user's name";
     };
@@ -33,7 +35,7 @@ in
         "video"
       ];
       shell = pkgs.fish;
-      #openssh.authorizedKeys.keys = [ cfg.sshKey ];
+      openssh.authorizedKeys.keys = cfg.sshKeys;
     };
 
     home-manager = {

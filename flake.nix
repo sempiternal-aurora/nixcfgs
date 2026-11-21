@@ -167,6 +167,23 @@
             { nixpkgs.overlays = [ self.outputs.overlays.default ]; }
           ];
         };
+
+        sornach = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          specialArgs = {
+            inherit inputs;
+            vars = {
+              adminUser = "aurora";
+              localUser = "myria";
+              configuration = "sornach";
+            };
+          };
+          modules = [
+            ./hosts/sornach/configuration.nix
+            inputs.nixos-hardware.nixosModules.framework-13-7040-amd
+            { nixpkgs.overlays = [ self.outputs.overlays.default ]; }
+          ];
+        };
       };
 
       overlays.default = import ./pkgs/overlay.nix;
